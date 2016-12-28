@@ -9,6 +9,10 @@ public class PlayerController : MonoBehaviour {
     //private Collider2D playerCollider; 
     private Rigidbody2D playerRigidbody;
     
+    private float originalMovementSpeed;
+    private float originalSpeedMilestoneCount;
+    private float originalSpeedIncreaseMilestone;
+    
     public bool grounded;
     public float movementSpeed;
     public float movementSpeedMultiplier;
@@ -18,6 +22,7 @@ public class PlayerController : MonoBehaviour {
     public LayerMask layerMask;
     public Transform groundCheck;
     public float groundCheckRadius;
+    public GameManager gameManager;
 	// Use this for initialization
 	void Start () {
         playerRigidbody = GetComponent<Rigidbody2D>();
@@ -26,6 +31,10 @@ public class PlayerController : MonoBehaviour {
 
         jumpTimeCounter = jumpTime;
         speedMilestoneCount = speedIncreaseMilestone;
+
+        originalMovementSpeed = movementSpeed;
+        originalSpeedMilestoneCount = speedMilestoneCount;
+        originalSpeedIncreaseMilestone = speedIncreaseMilestone;
     }
 	
 	// Update is called once per frame
@@ -60,4 +69,15 @@ public class PlayerController : MonoBehaviour {
         playerAnimator.SetFloat("Speed", playerRigidbody.velocity.x);
         playerAnimator.SetBool("Grounded", grounded);
 	}
+    void OnCollisionEnter2D (Collision2D other)
+    {
+        if (other.gameObject.tag == "Killbox")
+        {
+            gameManager.RestartGame();
+            movementSpeed = originalMovementSpeed;
+            speedMilestoneCount = originalSpeedMilestoneCount;
+            speedIncreaseMilestone = originalSpeedIncreaseMilestone;
+
+        }
+    }
 }
