@@ -607,9 +607,9 @@ MonoBehaviour:
   scoreText: {fileID: 534058056}
   highScoreText: {fileID: 726521683}
   scoreCount: 0
-  highScoreCount: 50
+  highScoreCount: 0
   pointsPerSecond: 5
-  scoreIncreasing: 0
+  scoreIncreasing: 1
 --- !u!1 &534058054
 GameObject:
   m_ObjectHideFlags: 0
