@@ -9,7 +9,7 @@ public class PlatformGenerator : MonoBehaviour {
     private float maximumHeight;
     private float heightDifference;
     private float[] platformWidths;
-
+    private StarGenerator starGenerator;
 
     public GameObject newPlatform;
     //public GameObject[] platforms;
@@ -17,6 +17,7 @@ public class PlatformGenerator : MonoBehaviour {
     public float distanceBeetweenPlatformsMin;
     public float distanceBetweenPlatformsMax;
     public float maximumHeightDiffrence;
+    public float randomStarThreshold;
     public ObjectPooler[] objectPools;
     public Transform generationPoint;
     public Transform maximumHeightPoint;
@@ -32,6 +33,8 @@ public class PlatformGenerator : MonoBehaviour {
 
         minimumHeight = transform.position.y;
         maximumHeight = maximumHeightPoint.position.y;
+
+        starGenerator = FindObjectOfType<StarGenerator>();
 
 	}
 	
@@ -59,6 +62,9 @@ public class PlatformGenerator : MonoBehaviour {
             newPlatform.transform.position = transform.position;
             newPlatform.transform.rotation = transform.rotation;
             newPlatform.SetActive(true);
+
+            if(Random.Range(0f, 100f) < randomStarThreshold)
+                starGenerator.SpawnStars(new Vector3(transform.position.x,transform.position.y + 1f, transform.position.z));
 
             transform.position = new Vector3(transform.position.x + (platformWidths[platformSelector] / 2), transform.position.y, transform.position.z);
         }

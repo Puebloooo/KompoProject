@@ -117,11 +117,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5a57f56bf5717e459c238161a5dbad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newPlatform: {fileID: 0}
+  newPlatform: {fileID: 1000010654663554, guid: ffdab7c492e1a9c40ad9719934563c01,
+    type: 2}
   distanceBetweenPlatforms: 3
   distanceBeetweenPlatformsMin: 1
   distanceBetweenPlatformsMax: 7
   maximumHeightDiffrence: 3
+  randomStarThreshold: 75
   objectPools:
   - {fileID: 1966611797}
   - {fileID: 1487831271}
@@ -392,6 +394,49 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &221717267
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 221717269}
+  - 114: {fileID: 221717268}
+  m_Layer: 0
+  m_Name: StarGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &221717268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 221717267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00adc409e4d5441458a9f760e9b5e662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceBetweenStars: 1
+  starPool: {fileID: 1007890553}
+--- !u!4 &221717269
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 221717267}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.38154066, y: 0.13045226, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 1007890552}
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
 --- !u!1 &277485246
 GameObject:
   m_ObjectHideFlags: 0
@@ -1107,6 +1152,49 @@ Transform:
   m_Children: []
   m_Father: {fileID: 34223257}
   m_RootOrder: 0
+--- !u!1 &1007890551
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1007890552}
+  - 114: {fileID: 1007890553}
+  m_Layer: 0
+  m_Name: StarPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1007890552
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1007890551}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 221717269}
+  m_RootOrder: 0
+--- !u!114 &1007890553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1007890551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d8141b20170f124eb0ab5f03fa01fbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObject: {fileID: 1000012553987584, guid: bf7a19606e5083349bd03b540fec80d3,
+    type: 2}
+  pooledAmount: 15
 --- !u!1 &1045507458
 GameObject:
   m_ObjectHideFlags: 0

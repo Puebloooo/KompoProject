@@ -69,9 +69,9 @@ public class PlayerController : MonoBehaviour {
         playerAnimator.SetFloat("Speed", playerRigidbody.velocity.x);
         playerAnimator.SetBool("Grounded", grounded);
 	}
-    void OnCollisionEnter2D (Collision2D other)
+    void OnCollisionEnter2D (Collision2D otherCollider)
     {
-        if (other.gameObject.tag == "Killbox")
+        if (otherCollider.gameObject.tag == "Killbox")
         {
             gameManager.RestartGame();
             movementSpeed = originalMovementSpeed;
