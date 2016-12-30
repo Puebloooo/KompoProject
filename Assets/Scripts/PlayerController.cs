@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
     private Animator playerAnimator;
     //private Collider2D playerCollider; 
     private Rigidbody2D playerRigidbody;
+    private bool stoppedJumping;
     
     private float originalMovementSpeed;
     private float originalSpeedMilestoneCount;
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour {
         originalMovementSpeed = movementSpeed;
         originalSpeedMilestoneCount = speedMilestoneCount;
         originalSpeedIncreaseMilestone = speedIncreaseMilestone;
+        stoppedJumping = true;
     }
 	
 	// Update is called once per frame
@@ -54,16 +56,22 @@ public class PlayerController : MonoBehaviour {
         playerRigidbody.velocity = new Vector2(movementSpeed, playerRigidbody.velocity.y);
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
-            if(grounded)
-                playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x , jumpForce);
-        if (Input.GetKey(KeyCode.Space) || Input.GetMouseButtonDown(0))
+            if (grounded)
+            {
+                playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, jumpForce);
+                stoppedJumping = false;
+            }
+        if ((Input.GetKey(KeyCode.Space) || Input.GetMouseButtonDown(0)) && !stoppedJumping)
             if (jumpTimeCounter > 0)
             {
                 playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, jumpForce);
                 jumpTimeCounter -= Time.deltaTime;
             }
         if (Input.GetKeyUp(KeyCode.Space) || Input.GetMouseButtonUp(0))
+        {
             jumpTimeCounter = 0;
+            stoppedJumping = true;
+        }
         if (grounded)
             jumpTimeCounter = jumpTime;
         playerAnimator.SetFloat("Speed", playerRigidbody.velocity.x);
