@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour {
     private ScoreManager scoreManager;
 
     public PlayerController player;
+    public RestartMenu restartMenu;
     public Transform platformGenerator;
 
 	// Use this for initialization
@@ -25,16 +26,16 @@ public class GameManager : MonoBehaviour {
 
     public void RestartGame()
     {
-        StartCoroutine("RestartGameCo");
-    }
-    public IEnumerator RestartGameCo()
-    {
+        //StartCoroutine("RestartGameCo");
         scoreManager.scoreIncreasing = false;
-
         player.gameObject.SetActive(false);
-        yield return new WaitForSeconds(0.5f);
-
+        restartMenu.gameObject.SetActive(true);
+    }
+    public void Reset()
+    {
+        restartMenu.gameObject.SetActive(false);
         platformList = FindObjectsOfType<PlatformDestructor>();
+
         for (int i = 0; i < platformList.Length; i++)
             platformList[i].gameObject.SetActive(false);
 
@@ -45,4 +46,23 @@ public class GameManager : MonoBehaviour {
         scoreManager.scoreCount = 0;
         scoreManager.scoreIncreasing = true;
     }
+    /*
+    public IEnumerator RestartGameCo()
+    {
+        scoreManager.scoreIncreasing = false;
+        player.gameObject.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
+        platformList = FindObjectsOfType<PlatformDestructor>();
+
+        for (int i = 0; i < platformList.Length; i++)
+            platformList[i].gameObject.SetActive(false);
+
+        player.transform.position = playerStartPoint;
+        platformGenerator.position = platformStartPoint;
+        player.gameObject.SetActive(true);
+
+        scoreManager.scoreCount = 0;
+        scoreManager.scoreIncreasing = true;
+    }
+    */
 }
