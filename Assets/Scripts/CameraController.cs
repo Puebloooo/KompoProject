@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class CameraController : MonoBehaviour {
 
@@ -8,13 +7,11 @@ public class CameraController : MonoBehaviour {
 
     public PlayerController Player;
 
-	// Use this for initialization
 	void Start () {
         Player = FindObjectOfType<PlayerController>();
         lastPlayerPosition = Player.transform.position;
     }
 	
-	// Update is called once per frame
 	void Update () {
         distanceToMove = Player.transform.position.x - lastPlayerPosition.x;
 

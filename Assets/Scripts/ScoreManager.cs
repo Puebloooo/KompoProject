@@ -1,25 +1,20 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class ScoreManager : MonoBehaviour {
 
+    public bool scoreIncreasing;
+    public float highScoreCount;
+    public float pointsPerSecond;
+    public float scoreCount;
     public Text scoreText;
     public Text highScoreText;
 
-    public float scoreCount;
-    public float highScoreCount;
-
-    public float pointsPerSecond;
-    public bool scoreIncreasing;
-
-	// Use this for initialization
 	void Start () {
         if (PlayerPrefs.HasKey("HighScore"))
             highScoreCount = PlayerPrefs.GetFloat("HighScore");
 	}
 	
-	// Update is called once per frame
 	void Update () {
         if(scoreIncreasing)
             scoreCount += pointsPerSecond * Time.deltaTime;

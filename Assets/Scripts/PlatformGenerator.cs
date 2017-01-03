@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class PlatformGenerator : MonoBehaviour {
 
@@ -23,7 +22,6 @@ public class PlatformGenerator : MonoBehaviour {
     public Transform maximumHeightPoint;
     
 
-    // Use this for initialization
     void Start () {
         //platformWidth = thePlatform.GetComponent<BoxCollider2D>().size.x;
         platformWidths = new float[objectPools.Length];
@@ -38,7 +36,6 @@ public class PlatformGenerator : MonoBehaviour {
 
 	}
 	
-	// Update is called once per frame
 	void Update () {
         if (transform.position.x < generationPoint.position.x)
         {
@@ -54,9 +51,7 @@ public class PlatformGenerator : MonoBehaviour {
                 heightDifference = minimumHeight;
 
             transform.position = new Vector3(transform.position.x + (platformWidths[platformSelector]/2 ) + distanceBetweenPlatforms, heightDifference, transform.position.z);
-            //Instantiate creates a copy of the original object
             //Instantiate(thePlatform, transform.position, transform.rotation);
-            
 
             newPlatform = objectPools[platformSelector].GetPooledObject();
             newPlatform.transform.position = transform.position;

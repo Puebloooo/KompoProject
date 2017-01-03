@@ -1,30 +1,28 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
+    private bool stoppedJumping;
     private float jumpTimeCounter;
+    private float originalMovementSpeed;
+    private float originalSpeedIncreaseMilestone;
+    private float originalSpeedMilestoneCount;
     private float speedMilestoneCount;
     private Animator playerAnimator;
     //private Collider2D playerCollider; 
     private Rigidbody2D playerRigidbody;
-    private bool stoppedJumping;
-    
-    private float originalMovementSpeed;
-    private float originalSpeedMilestoneCount;
-    private float originalSpeedIncreaseMilestone;
     
     public bool grounded;
-    public float movementSpeed;
-    public float movementSpeedMultiplier;
-    public float speedIncreaseMilestone;
+    public float groundCheckRadius;
     public float jumpTime;
     public float jumpForce;
+    public float movementSpeed;
+    public float speedIncreaseMilestone;
+    public float movementSpeedMultiplier;
     public LayerMask layerMask;
-    public Transform groundCheck;
-    public float groundCheckRadius;
     public GameManager gameManager;
-	// Use this for initialization
+    public Transform groundCheck;
+
 	void Start () {
         playerRigidbody = GetComponent<Rigidbody2D>();
         //playerCollider = GetComponent<Collider2D>(); // used for older version of ground detection
@@ -39,7 +37,6 @@ public class PlayerController : MonoBehaviour {
         stoppedJumping = true;
     }
 	
-	// Update is called once per frame
 	void Update () {
 
         //grounded = Physics2D.IsTouchingLayers(playerCollider,layerMask); 
@@ -61,12 +58,14 @@ public class PlayerController : MonoBehaviour {
                 playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, jumpForce);
                 stoppedJumping = false;
             }
+
         if ((Input.GetKey(KeyCode.Space) || Input.GetMouseButtonDown(0)) && !stoppedJumping)
             if (jumpTimeCounter > 0)
             {
                 playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, jumpForce);
                 jumpTimeCounter -= Time.deltaTime;
             }
+
         if (Input.GetKeyUp(KeyCode.Space) || Input.GetMouseButtonUp(0))
         {
             jumpTimeCounter = 0;
@@ -74,6 +73,7 @@ public class PlayerController : MonoBehaviour {
         }
         if (grounded)
             jumpTimeCounter = jumpTime;
+        
         playerAnimator.SetFloat("Speed", playerRigidbody.velocity.x);
         playerAnimator.SetBool("Grounded", grounded);
 	}

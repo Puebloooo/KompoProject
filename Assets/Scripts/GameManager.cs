@@ -1,25 +1,22 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class GameManager : MonoBehaviour {
 
-    private Vector3 platformStartPoint;
-    private Vector3 playerStartPoint;
     private PlatformDestructor[] platformList;
     private ScoreManager scoreManager;
+    private Vector3 platformStartPoint;
+    private Vector3 playerStartPoint;
 
     public PlayerController player;
     public RestartMenu restartMenu;
     public Transform platformGenerator;
 
-	// Use this for initialization
 	void Start () {
         platformStartPoint = platformGenerator.position;
         playerStartPoint = player.transform.position;
         scoreManager = FindObjectOfType<ScoreManager>();
     }
 	
-	// Update is called once per frame
 	void Update () {
 	
 	}

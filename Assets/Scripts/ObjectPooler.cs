@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using System.Collections;
 
 public class ObjectPooler : MonoBehaviour {
 
@@ -8,7 +7,6 @@ public class ObjectPooler : MonoBehaviour {
     public int pooledAmount;
     List<GameObject> pooledObjects;
 
-	// Use this for initialization
 	void Start () {
         pooledObjects = new List<GameObject>();
         for (int i = 0; i < pooledAmount ; i++)
