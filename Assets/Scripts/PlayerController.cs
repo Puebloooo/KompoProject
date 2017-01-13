@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour {
                 stoppedJumping = false;
             }
 
-        if ((Input.GetKey(KeyCode.Space) || Input.GetMouseButtonDown(0)) && !stoppedJumping)
+        if ((Input.GetKey(KeyCode.Space) || Input.GetMouseButton(0)) && !stoppedJumping)
             if (jumpTimeCounter > 0)
             {
                 playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, jumpForce);

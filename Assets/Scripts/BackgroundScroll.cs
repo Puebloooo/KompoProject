@@ -8,6 +8,7 @@ public class BackgroundScroll : MonoBehaviour {
     public float smoothing;
     public Transform background;
     
+
     void Start () {
         previousCameraPosition = transform.position;
 	}
@@ -16,7 +17,7 @@ public class BackgroundScroll : MonoBehaviour {
         Vector3 parallax = (previousCameraPosition - transform.position) * ((-10)/smoothing);
         background.position = new Vector3(background.position.x + parallax.x, background.position.y, background.position.z);
         previousCameraPosition = transform.position;
-               
-	}
+        
+    }
  
 }
