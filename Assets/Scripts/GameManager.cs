@@ -2,7 +2,7 @@
 
 public class GameManager : MonoBehaviour {
 
-    private PlatformDestructor[] platformList;
+    private ObjectDestructor[] platformList;
     private ScoreManager scoreManager;
     private Vector3 platformStartPoint;
     private Vector3 playerStartPoint;
@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour {
     public void Reset()
     {
         restartMenu.gameObject.SetActive(false);
-        platformList = FindObjectsOfType<PlatformDestructor>();
+        platformList = FindObjectsOfType<ObjectDestructor>();
 
         for (int i = 0; i < platformList.Length; i++)
             platformList[i].gameObject.SetActive(false);

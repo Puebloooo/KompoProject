@@ -3,7 +3,6 @@
 public class PlatformGenerator : MonoBehaviour {
 
     private int platformSelector;
-    //private float platformWidth;
     private float minimumHeight;
     private float maximumHeight;
     private float heightDifference;
@@ -11,11 +10,10 @@ public class PlatformGenerator : MonoBehaviour {
     private StarGenerator starGenerator;
 
     public GameObject newPlatform;
-    //public GameObject[] platforms;
     public float distanceBetweenPlatforms;
-    public float distanceBeetweenPlatformsMin;
+    public float distanceBetweenPlatformsMin;
     public float distanceBetweenPlatformsMax;
-    public float maximumHeightDiffrence;
+    public float maximumHeightDifference;
     public float randomStarThreshold;
     public ObjectPooler[] objectPools;
     public Transform generationPoint;
@@ -23,7 +21,6 @@ public class PlatformGenerator : MonoBehaviour {
     
 
     void Start () {
-        //platformWidth = thePlatform.GetComponent<BoxCollider2D>().size.x;
         platformWidths = new float[objectPools.Length];
 
         for (int i = 0; i < objectPools.Length; i++)
@@ -39,11 +36,11 @@ public class PlatformGenerator : MonoBehaviour {
 	void Update () {
         if (transform.position.x < generationPoint.position.x)
         {
-            distanceBetweenPlatforms = Random.Range(distanceBeetweenPlatformsMin, distanceBetweenPlatformsMax);
+            distanceBetweenPlatforms = Random.Range(distanceBetweenPlatformsMin, distanceBetweenPlatformsMax);
 
             platformSelector = Random.Range(0, objectPools.Length);
 
-            heightDifference = transform.position.y + Random.Range(maximumHeightDiffrence, -maximumHeightDiffrence);
+            heightDifference = transform.position.y + Random.Range(maximumHeightDifference, -maximumHeightDifference);
 
             if (heightDifference > maximumHeight)
                 heightDifference = maximumHeight;
@@ -51,7 +48,6 @@ public class PlatformGenerator : MonoBehaviour {
                 heightDifference = minimumHeight;
 
             transform.position = new Vector3(transform.position.x + (platformWidths[platformSelector]/2 ) + distanceBetweenPlatforms, heightDifference, transform.position.z);
-            //Instantiate(thePlatform, transform.position, transform.rotation);
 
             newPlatform = objectPools[platformSelector].GetPooledObject();
             newPlatform.transform.position = transform.position;
